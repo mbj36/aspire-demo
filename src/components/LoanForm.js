@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Input, Dropdown, Button } from 'semantic-ui-react'
 import { FormBody } from './styles'
+import axios from 'axios'
 
 const termOptions = [
   {
@@ -38,12 +39,28 @@ class LoanForm extends Component {
       [e.target.id]: e.target.value
     })
   }
-  handleSubmit = e => {}
+
+  handleSubmit = e => {
+    axios
+      .post('http://localhost:3000/newloan', {
+        approved: false,
+        loanpurpose: this.state.loanpurpose,
+        submittedon: this.state.submittedon,
+        loanterm: this.state.loanterm,
+        totalRepayments: this.state.totalRepayments,
+        repaid: this.state.repaid
+      })
+      .then(response => {
+        alert('Submitted Sucessfully')
+        this.setState(this.initialState)
+      })
+      .catch(err => console.log(err))
+  }
   render() {
     return (
       <FormBody>
         <h1>Loan Application Form</h1>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group widths="equal">
             <Form.Field
               id="loanpurpose"
