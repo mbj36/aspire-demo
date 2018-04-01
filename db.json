@@ -1,7 +1,7 @@
 {
   "newloan": [
     {
-      "approved": true,
+      "approved": false,
       "loanpurpose": "Farming",
       "submittedon": "01/04/2018",
       "loanterm": "2",
