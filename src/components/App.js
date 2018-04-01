@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
-import Header from './Header'
-import LoanForm from './LoanForm'
+import Main from './Main'
+import Repay from './Repay'
+
+import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <LoanForm />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/repay" component={Repay} />
+        </Switch>
       </div>
     )
   }

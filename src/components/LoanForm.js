@@ -42,13 +42,14 @@ class LoanForm extends Component {
 
   handleSubmit = e => {
     axios
-      .post('http://localhost:3000/newloan', {
+      .post('http://localhost:3004/newloan', {
         approved: false,
         loanpurpose: this.state.loanpurpose,
         submittedon: this.state.submittedon,
         loanterm: this.state.loanterm,
         totalRepayments: this.state.totalRepayments,
-        repaid: this.state.repaid
+        repaid: this.state.repaid,
+        amount: this.state.amount
       })
       .then(response => {
         alert('Submitted Sucessfully')
