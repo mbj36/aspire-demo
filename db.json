@@ -1,13 +1,13 @@
 {
   "newloan": [
     {
-      "approved": false,
-      "loanpurpose": "Agriculture",
+      "approved": true,
+      "loanpurpose": "Farmin",
       "submittedon": "01/04/2018",
-      "loanterm": "12",
-      "totalRepayments": "12",
+      "loanterm": "2",
+      "totalRepayments": "2",
       "repaid": "1",
-      "amount": "10000",
+      "amount": "20000",
       "id": 1
     }
   ]

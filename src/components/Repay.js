@@ -10,13 +10,16 @@ class Repay extends Component {
       amount: 100
     }
   }
+  repay = ({ history }) => {
+    alert('Amount paid')
+  }
   render() {
     return (
       <div>
         <Header />
         <FormBody>
           <h2>Repayment</h2>
-          <Form>
+          <Form onSubmit={this.repay}>
             <Form.Field
               control={Input}
               id="repayment"

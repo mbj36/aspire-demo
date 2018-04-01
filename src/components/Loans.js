@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { FormBody } from './styles'
 import { List, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 class LoanDetails extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class LoanDetails extends Component {
     }
     this.initialState = this.state
   }
-  ShowLoans = e => {
+  ShowLoans = () => {
     axios.get('http://localhost:3004/newloan').then(response => {
       const data = response.data
       this.setState({
@@ -19,8 +20,14 @@ class LoanDetails extends Component {
       })
     })
   }
-  ApproveLoan = e => {
-    axios.post('http://localhost:3000/newloan')
+  ApproveLoan = id => {
+    axios
+      .patch(`http://localhost:3004/newloan/${id}`, {
+        approved: true
+      })
+      .then(() => {
+        alert('Your loan is approved')
+      })
   }
   componentDidMount() {
     this.ShowLoans()
@@ -34,9 +41,13 @@ class LoanDetails extends Component {
             <List.Item>
               <List.Content floated="right">
                 {loan.approved ? (
-                  <Button>Repay</Button>
+                  <Link to="/repay">
+                    <Button>Repay</Button>
+                  </Link>
                 ) : (
-                  <Button onClick={this.ApproveLoan}>Approve</Button>
+                  <Button onClick={() => this.ApproveLoan(loan.id)}>
+                    Approve
+                  </Button>
                 )}
               </List.Content>
               <List.Content>{loan.loanpurpose}</List.Content>
